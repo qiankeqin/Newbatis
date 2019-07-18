@@ -17,7 +17,13 @@ public class GPMapperProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //因为这个方法没有selectByPrimaryKey，并且不想代理这个对象，所以需要去找Mapper对象和Xml对象的映射
-//        sqlSession.selectOne()
-        return null;
+        String statement = "";
+        if(method.getDeclaringClass().getName().equals(GPConfiguration.UserMapperXml.namespace)){
+            statement = GPConfiguration.UserMapperXml.methodSqlMapping.get(method.getName());
+            sqlSession.selectOne(statement,args.toString());
+        } else {
+            //其他mapper类
+        }
+        return method.invoke(this,args);
     }
 }
