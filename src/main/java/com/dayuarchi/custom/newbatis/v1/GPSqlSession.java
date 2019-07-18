@@ -6,9 +6,9 @@ package com.dayuarchi.custom.newbatis.v1;
  * @date 2019-07-18 19:42
  */
 public class GPSqlSession {
-    //Configuration configuration
+
     private GPConfiguration configuration;
-    //Executor executor
+
     private GPExecutor executor;
 
     public GPSqlSession(GPConfiguration configuration, GPExecutor executor) {
@@ -16,5 +16,13 @@ public class GPSqlSession {
         this.executor = executor;
     }
 
+    public <T> T getMapper(Class<T> clazz){
+        //从configuration中返回Mapper
+        return configuration.getMapper(clazz);
+    }
+
+    public <T> T selectOne(String statement,String parameter){
+        return executor.query(statement,parameter);
+    }
 
 }
