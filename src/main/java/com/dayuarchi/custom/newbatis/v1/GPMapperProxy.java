@@ -20,7 +20,7 @@ public class GPMapperProxy implements InvocationHandler {
         String statement = "";
         if(method.getDeclaringClass().getName().equals(GPConfiguration.UserMapperXml.namespace)){
             statement = GPConfiguration.UserMapperXml.methodSqlMapping.get(method.getName());
-            sqlSession.selectOne(statement,args.toString());
+            return sqlSession.selectOne(statement,String.valueOf(args[0]));
         } else {
             //其他mapper类
         }

@@ -28,7 +28,7 @@ public class GPConfiguration {
         //初始化加载方法
         static {
             //模拟记载
-            methodSqlMapping.put("selectByPrimaryKey","select * from t_user where id=%d");
+            methodSqlMapping.put("selectByPrimaryKey","select * from user where id=%d");
         }
     }
 }

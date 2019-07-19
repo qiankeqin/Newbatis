@@ -16,9 +16,9 @@ public class GPSqlSession {
         this.executor = executor;
     }
 
-    public <T> T getMapper(Class<T> clazz,GPSqlSession sqlSession){
+    public <T> T getMapper(Class<T> clazz){
         //从configuration中返回Mapper
-        return configuration.getMapper(clazz,sqlSession);
+        return configuration.getMapper(clazz,this);
     }
 
     public <T> T selectOne(String statement,String parameter){
