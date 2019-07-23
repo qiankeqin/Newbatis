@@ -1,0 +1,36 @@
+package com.dayuarchi.custom.newbatis.v2;
+
+/**
+ * @author qiankeqin
+ * @Description: DESCRIPTION
+ * @date 2019-07-18 19:42
+ */
+public class GPSqlSession {
+
+    private GPConfiguration configuration;
+
+    private GPExecutor executor;
+
+    public GPSqlSession(GPConfiguration configuration, GPExecutor executor) {
+        this.configuration = configuration;
+        this.executor = executor;
+    }
+
+    public GPConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(GPConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    public <T> T getMapper(Class<T> clazz){
+        //从configuration中返回Mapper
+        return configuration.getMapper(clazz,this);
+    }
+
+    public <T> T selectOne(String statement, String parameter, Class type){
+        return executor.query(statement,parameter,type);
+    }
+
+}
